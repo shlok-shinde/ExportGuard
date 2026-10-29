@@ -1,0 +1,6 @@
+Export: Release 19.0.0.0.0 - Production on Wed Oct 29 14:10:00 2026
+Connected to: Oracle Database 19c Enterprise Edition Release 19.3.0.0.0
+Starting "SYSTEM"."SYS_EXPORT_SCHEMA_01": schemas=FINANCE
+ORA-31693: Table data object "FINANCE"."TRANSACTIONS" failed to load/unload
+ORA-01555: snapshot too old: rollback segment number 14 with name "_SYSSMU14$" too small
+Job "SYSTEM"."SYS_EXPORT_SCHEMA_01" completed with 2 error(s) at Wed Oct 29 14:11:00 2026

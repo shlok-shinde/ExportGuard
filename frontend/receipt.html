@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExportGuard — Forensic Audit Certificate (NIST SP 800-53 CP-9)</title>
+  
+  <!-- Curated Typography: Anton, Inter Tight, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  
+  <style>
+    body.standalone-receipt-view {
+      background-color: var(--bg-paper);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .receipt-standalone-wrapper {
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .receipt-top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .btn-receipt-action {
+      background: var(--ink);
+      color: var(--bg-paper);
+      border: var(--border-thick);
+      padding: 10px 18px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+    }
+
+    .btn-receipt-action:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md);
+      background-color: var(--accent-blue);
+    }
+
+    .standalone-paper {
+      background: #FFFFFF !important;
+      color: var(--ink);
+      border: var(--border-heavy);
+      box-shadow: 16px 16px 0 var(--ink);
+      padding: 44px 36px 60px;
+      font-family: var(--font-mono);
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% 98%, 98% 100%, 96% 98%, 94% 100%, 92% 98%, 90% 100%,
+        88% 98%, 86% 100%, 84% 98%, 82% 100%, 80% 98%, 78% 100%, 76% 98%, 74% 100%,
+        72% 98%, 70% 100%, 68% 98%, 66% 100%, 64% 98%, 62% 100%, 60% 98%, 58% 100%,
+        56% 98%, 54% 100%, 52% 98%, 50% 100%, 48% 98%, 46% 100%, 44% 98%, 42% 100%,
+        40% 98%, 38% 100%, 36% 98%, 34% 100%, 32% 98%, 30% 100%, 28% 98%, 26% 100%,
+        24% 98%, 22% 100%, 20% 98%, 18% 100%, 16% 98%, 14% 100%, 12% 98%, 10% 100%,
+        8% 98%, 6% 100%, 4% 98%, 2% 100%, 0% 98%
+      );
+    }
+
+    @media print {
+      body.standalone-receipt-view {
+        background: #FFFFFF;
+        padding: 0;
+      }
+      .receipt-top-actions, .app-footer {
+        display: none !important;
+      }
+      .standalone-paper {
+        box-shadow: none;
+        border: 2px solid #000;
+        clip-path: none;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="standalone-receipt-view">
+
+  <div class="receipt-standalone-wrapper">
+    <div class="receipt-top-actions">
+      <a href="/" class="btn-receipt-action">← Back to Cockpit</a>
+      <button onclick="window.print()" class="btn-receipt-action" style="background:var(--accent-blue);">Print Certificate</button>
+    </div>
+
+    <div class="standalone-paper">
+      <div class="receipt-header">
+        <div class="mono" style="font-size:11px; letter-spacing:0.12em; color:rgba(17,18,21,0.6);">OFFICIAL FORENSIC CERTIFICATE</div>
+        <div class="receipt-title display">EXPORTGUARD AUDIT</div>
+        <div class="mono" style="font-size:11px; margin-top:4px;" id="receipt-timestamp">UTC: 2026-10-29T12:00:00</div>
+      </div>
+
+      <div class="receipt-item-row">
+        <span>ARCHIVE:</span>
+        <strong id="receipt-filename">high_compression_export.gz</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>STREAM ROWS:</span>
+        <strong id="receipt-rows">130,001</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMPRESSED SIZE:</span>
+        <strong id="receipt-size">0.37 MB</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>EFFICIENCY:</span>
+        <strong id="receipt-bpr">3.01 B/row</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>GZIP CONTAINER:</span>
+        <strong id="receipt-crc">0x8bda991e (RFC 1952 OK)</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>STREAM SENTINEL:</span>
+        <strong id="receipt-sentinel" style="color:var(--signal-safe);">VERIFIED INTACT</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMMUTATIVE XOR:</span>
+        <strong id="receipt-xor">0x41e6515751dfd694</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>SHANNON ENTROPY:</span>
+        <strong id="receipt-entropy">5.2169 bits/byte</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMPLIANCE:</span>
+        <strong>NIST SP 800-53 CP-9(2)</strong>
+      </div>
+
+      <div class="receipt-stamp-box" id="receipt-verdict-stamp">
+        INTACT // CERTIFIED FOR RESTORE
+      </div>
+
+      <div style="margin-top:28px; padding-top:16px; border-top:1px dashed rgba(17,18,21,0.3); font-size:11px; line-height:1.5;">
+        <div><strong>TECHNICAL VERIFICATION GUARANTEE:</strong></div>
+        <div>• 0 bytes staging tablespace allocated.</div>
+        <div>• Single-pass stream decompressed in ephemeral memory buffer.</div>
+        <div>• Order-independent commutative 64-bit XOR validated across all records.</div>
+        <div>• Cryptographic Merkle tree chunk roots verified.</div>
+      </div>
+
+      <p class="mono" style="font-size:10px; color:rgba(17,18,21,0.6); text-align:center; margin-top:24px;">
+        Generated automatically by ExportGuard Engine v2.0<br>
+        Zero staging database required.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const params = new URLSearchParams(window.location.search);
+      const scenario = params.get('scenario') || 'high_compression';
+
+      try {
+        const res = await fetch(`/api/demo/${scenario}`);
+        if (!res.ok) throw new Error('Failed to load scenario data');
+        const report = await res.json();
+
+        const isIntact = (report.verdict === 'INTACT');
+        const t1 = report.tier1;
+        const t2 = report.tier2;
+        const t3 = report.tier3;
+        const currRows = t2 ? t2.streaming_row_count : (t1.log_parser ? t1.log_parser.total_rows : 0);
+        const compSizeMB = (t1.gzip_container.file_size_bytes / (1024 * 1024)).toFixed(2);
+        const bytesPerRow = t1.anomaly_scorer.curr_bytes_per_row || (t1.gzip_container.file_size_bytes / Math.max(1, currRows)).toFixed(2);
+
+        document.getElementById('receipt-filename').textContent = report.export_filename;
+        document.getElementById('receipt-timestamp').textContent = `UTC: ${report.timestamp.slice(0, 19)}`;
+        document.getElementById('receipt-rows').textContent = currRows.toLocaleString();
+        document.getElementById('receipt-size').textContent = `${compSizeMB} MB`;
+        document.getElementById('receipt-bpr').textContent = `${typeof bytesPerRow === 'number' ? bytesPerRow.toFixed(2) : bytesPerRow} B/row`;
+        document.getElementById('receipt-crc').textContent = t1.gzip_container.stored_crc32 || '0x00000000';
+
+        const recSentinel = document.getElementById('receipt-sentinel');
+        recSentinel.textContent = t1.sentinel_check.passed ? 'VERIFIED INTACT' : 'MISSING / ABORTED';
+        recSentinel.style.color = t1.sentinel_check.passed ? 'var(--signal-safe)' : 'var(--signal-warn)';
+
+        document.getElementById('receipt-xor').textContent = t2 ? t2.calculated_xor_checksum : 'N/A';
+        document.getElementById('receipt-entropy').textContent = t3 ? `${t3.entropy_analysis.average_entropy} bits/byte` : 'N/A';
+
+        const stamp = document.getElementById('receipt-verdict-stamp');
+        stamp.textContent = isIntact ? 'INTACT // CERTIFIED FOR RESTORE' : 'CORRUPTED // DO NOT RESTORE';
+        stamp.style.color = isIntact ? 'var(--signal-safe)' : 'var(--signal-warn)';
+        stamp.style.borderColor = isIntact ? 'var(--signal-safe)' : 'var(--signal-warn)';
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

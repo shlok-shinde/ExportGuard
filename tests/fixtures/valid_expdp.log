@@ -1,0 +1,8 @@
+Export: Release 19.0.0.0.0 - Production on Wed Oct 29 14:10:00 2026
+Connected to: Oracle Database 19c Enterprise Edition Release 19.3.0.0.0
+Starting "SYSTEM"."SYS_EXPORT_SCHEMA_01": schemas=FINANCE
+. . exported "FINANCE"."TRANSACTIONS"                    42.5 MB  100000 rows in 3 seconds
+Master table "SYSTEM"."SYS_EXPORT_SCHEMA_01" successfully loaded/unloaded
+Dump file set for SYSTEM.SYS_EXPORT_SCHEMA_01 is:
+  /u01/app/oracle/dpdump/export.dmp
+Job "SYSTEM"."SYS_EXPORT_SCHEMA_01" successfully completed at Wed Oct 29 14:10:05 2026

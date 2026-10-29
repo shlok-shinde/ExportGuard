@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExportGuard — Compressed Database Export Forensic Verification</title>
+  
+  <!-- Curated Typography: Anton, Inter Tight, Instrument Serif, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="landing-page">
+
+  <!-- =========================================================================
+       1. Gate Overlay (Interactive Opening Sequence)
+       ========================================================================= -->
+  <aside id="gate-curtain" class="gate-overlay" role="dialog" aria-label="ExportGuard System Gate">
+    <div class="gate-corner-tl mono">
+      EXPORTGUARD® / ZERO-FOOTPRINT SUITE<br>
+      RFC 1952 STREAM INTEGRITY
+    </div>
+    <div class="gate-corner-tr mono">
+      ORACLE DATAPUMP / EXPDP<br>
+      POSTGRESQL PG_DUMP
+    </div>
+
+    <div class="gate-center-content">
+      <div class="gate-radar-core">
+        <div class="gate-radar-dot"></div>
+      </div>
+      
+      <div class="gate-subtitle mono">Scanning Stream Envelopes...</div>
+      <p class="gate-statement">
+        When an export shrinks by 20% despite 30% more rows, <span class="serif-i text-emerald" style="color:var(--signal-safe);">don't guess. Prove it.</span>
+      </p>
+
+      <button id="btn-gate-enter" class="btn-gate-enter" data-cursor="enter">
+        ENTER AUDIT DECK →
+      </button>
+    </div>
+
+    <div class="gate-corner-br mono">
+      ZERO TABLES AVAILABLE?<br>
+      HEADPHONES ON.
+    </div>
+
+    <div class="gate-counter-num display" id="gate-counter">000</div>
+  </aside>
+
+  <!-- =========================================================================
+       2. Sticky Header with Workbench Link & Hanging Pull-Ticket Receipt
+       ========================================================================= -->
+  <header class="app-header">
+    <div class="brand-pill">
+      <span class="brand-name display">ExportGuard</span>
+      <span class="brand-tag mono">ZERO-IMPORT v2.0</span>
+    </div>
+
+    <nav class="header-center-nav" aria-label="Primary Navigation">
+      <a href="#hero" class="nav-pill-link">The Paradox</a>
+      <a href="#architecture" class="nav-pill-link">3-Tier Engine</a>
+      <a href="#hazards" class="nav-pill-link">Gzip Blind Spot</a>
+      <a href="/" class="nav-pill-link" style="background:var(--ink); color:var(--bg-paper);">Launch Cockpit ↗</a>
+    </nav>
+
+    <div class="header-right-actions">
+      <a href="/" class="btn-launch-cockpit display">
+        OPEN WORKBENCH →
+      </a>
+
+      <!-- Hanging Pull-Ticket Receipt -->
+      <div class="pull-ticket-anchor">
+        <div class="pull-ticket-cord"></div>
+        <button id="pull-ticket-btn" class="pull-ticket-btn" aria-label="Open Audit Receipt">
+          <div class="pull-ticket-eyelet"></div>
+          <span class="pull-ticket-text">AUDIT<br>TICKET</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       3. Poster Hero Section
+       ========================================================================= -->
+  <main id="hero" class="hero-section">
+    <div class="hero-meta-row mono">
+      <span>(00) SYSTEM SHOWCASE // NIST SP 800-53 CP-9</span>
+      <span>ORACLE DATA PUMP + POSTGRESQL / ZERO STAGING IMPORT</span>
+    </div>
+
+    <div class="hero-headline-wrap">
+      <h1 class="hero-main-title">
+        <div class="hero-line-1">
+          <span>VERIFY</span>
+          <span class="headline-tile-badge">
+            <span class="tile-slide-item">+30% ROWS</span>
+            <span class="tile-slide-item">-20% SIZE</span>
+            <span class="tile-slide-item">0 IMPORT</span>
+            <span class="tile-slide-item">100% OK</span>
+          </span>
+          <span>DEEP.</span>
+        </div>
+        <div class="hero-line-2 display">
+          RECOVER FASTER.
+        </div>
+      </h1>
+    </div>
+
+    <div class="hero-narrative-row">
+      <div>
+        <p class="hero-statement">
+          Management was suspicious of export usability when row volume grew <strong>+30%</strong>, but compressed file size <strong>shrank by 20%</strong>. With zero tablespace and zero downtime maintenance window, ExportGuard proves complete data integrity in seconds.
+        </p>
+
+        <div style="display:flex; gap:16px; margin-top:24px; flex-wrap:wrap;">
+          <a href="/" class="btn-hero-primary display">
+            LAUNCH FORENSIC WORKBENCH →
+          </a>
+          <a href="/?scenario=pipe_truncated" class="btn-hero-secondary mono">
+            SIMULATE PIPE FAILURE ⚠️
+          </a>
+        </div>
+      </div>
+
+      <!-- Tilted Stickers -->
+      <div class="stickers-shelf">
+        <div class="sticker s-blue" title="LZ77 dictionary match explanation">
+          <span>32 KB LZ77 WINDOW</span>
+        </div>
+        <div class="sticker s-safe" title="Zero TEMP tablespace sorting">
+          <span>0 BYTES TEMP SPILLED</span>
+        </div>
+        <div class="sticker s-warn" title="Silent pipe truncation hazard">
+          <span>⚠️ GZIP -T BLIND SPOT</span>
+        </div>
+        <div class="sticker s-paper" title="Rule of three statistical sampling">
+          <span>NIST CP-9(2) COMPLIANT</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       4. Crossing Curved Marquee Ribbons
+       ========================================================================= -->
+  <section class="marquee-ribbons-wrapper" aria-hidden="true">
+    <div class="ribbon-track-1">
+      <div class="marquee-content">
+        <span>COMMUTATIVE XOR CHECKSUM ❋ GZIP -T RFC 1952 VERIFICATION ❋ 4GB ISIZE SAFE ❋ STREAM COMPLETION SENTINEL ❋ SHANNON ENTROPY AUDIT ❋ NO TABLESPACE SCOPE ❋ ZERO DOWNTIME ❋&nbsp;</span>
+        <span>COMMUTATIVE XOR CHECKSUM ❋ GZIP -T RFC 1952 VERIFICATION ❋ 4GB ISIZE SAFE ❋ STREAM COMPLETION SENTINEL ❋ SHANNON ENTROPY AUDIT ❋ NO TABLESPACE SCOPE ❋ ZERO DOWNTIME ❋&nbsp;</span>
+      </div>
+    </div>
+    <div class="ribbon-track-2">
+      <div class="marquee-content">
+        <span>★ 130,001 ROWS VERIFIED IN STREAM ★ 3.01 B/ROW COMPRESSION RATIO ★ NIST SP 800-53 CP-9 VERIFIED ★ ORA-1555 PARSER ACTIVE ★ MERKLE TREE LEAF AUDIT ★&nbsp;</span>
+        <span>★ 130,001 ROWS VERIFIED IN STREAM ★ 3.01 B/ROW COMPRESSION RATIO ★ NIST SP 800-53 CP-9 VERIFIED ★ ORA-1555 PARSER ACTIVE ★ MERKLE TREE LEAF AUDIT ★&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. The Paradox Explainer & Architecture Cards
+       ========================================================================= -->
+  <section id="architecture" class="showcase-section">
+    <div class="showcase-header">
+      <span class="section-num mono">(01) PROBLEM SOLVED</span>
+      <h2 class="section-title display">THE +30% ROWS / -20% SIZE PARADOX</h2>
+      <p class="section-sub">Why traditional DBAs get terrified, and why LZ77 mathematics resolves the concern without a restore.</p>
+    </div>
+
+    <div class="brutalist-grid-3">
+      <div class="feature-card">
+        <div class="feature-badge mono">01 // THE SUSPICION</div>
+        <h3 class="feature-title display">THE ROW-SIZE INVERSION</h3>
+        <p class="feature-desc">
+          When exported row count surges from 100,000 to 130,000, uncompressed size expands. Yet the compressed archive dropped from 2.0 MB to 0.37 MB. Management suspects silent row loss or aborted dump threads.
+        </p>
+        <div class="feature-stat mono">100k → 130k rows // 2.0MB → 0.37MB</div>
+      </div>
+
+      <div class="feature-card highlight-card">
+        <div class="feature-badge mono" style="background:var(--signal-safe); color:var(--ink);">02 // THE MECHANISM</div>
+        <h3 class="feature-title display">DEFLATE DICTIONARY HIT</h3>
+        <p class="feature-desc">
+          The new 30,000 rows were repetitive batch reconciliation records. In Deflate (LZ77), repeated 100-character strings condense into 2-byte distance/length tokens. Shannon entropy dropped from 5.8 to 5.2 b/byte, shrinking the file by 80%.
+        </p>
+        <div class="feature-stat mono" style="color:var(--signal-safe);">3.01 B/row vs 20.04 B/row baseline</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-badge mono">03 // THE PROOF</div>
+        <h3 class="feature-title display">ZERO-IMPORT VALIDATION</h3>
+        <p class="feature-desc">
+          ExportGuard decompresses the Unix pipe entirely in memory. It verifies 130,001 individual line records, calculates an order-independent 64-bit XOR checksum, and audits the sliding-window entropy profile with 0 bytes staging tablespace.
+        </p>
+        <div class="feature-stat mono">Zero disk spill // &lt; 2s execution</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. The Gzip -t Silent Failure Hazard
+       ========================================================================= -->
+  <section id="hazards" class="showcase-section" style="padding-top:0;">
+    <div class="hazard-banner">
+      <div class="hazard-badge mono">CRITICAL DISCOVERY // THE GZIP -T BLIND SPOT</div>
+      <h3 class="hazard-title display">WHY `GZIP -T` IS NOT ENOUGH</h3>
+      <p class="hazard-text">
+        If an export process crashes mid-stream (OOM, killed pipe, network disconnect), the standard Unix pipeline <code class="mono">expdp ... | gzip &gt; dump.gz</code> receives an EOF. <strong>Gzip happily writes a valid CRC32 trailer for the truncated stream!</strong> Running <code class="mono">gzip -t dump.gz</code> returns code 0 (PASS), while 30,000 rows were silently lost forever.
+      </p>
+      <div class="hazard-actions">
+        <a href="/?scenario=pipe_truncated" class="btn-hazard-test display">
+          TEST PIPE-TRUNCATION SCENARIO IN COCKPIT →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. Direct CTA Strip to Workbench
+       ========================================================================= -->
+  <section class="cta-strip">
+    <div class="cta-strip-inner">
+      <h2 class="cta-title display">READY TO AUDIT LIVE ARCHIVES?</h2>
+      <p class="cta-subtitle">Switch scenarios, inspect Shannon entropy curves, or upload custom .gz files in the cockpit.</p>
+      <a href="/" class="btn-cta-giant display">
+        LAUNCH AUDIT WORKBENCH NOW →
+      </a>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. Perforated Receipt Modal Drawer
+       ========================================================================= -->
+  <div id="receipt-modal" class="receipt-modal-backdrop" role="dialog" aria-modal="true" aria-label="Official Audit Receipt">
+    <div class="receipt-paper">
+      <button id="btn-close-receipt" class="receipt-close-btn" aria-label="Close Receipt">✕</button>
+      
+      <div class="receipt-header">
+        <div class="mono" style="font-size:11px; letter-spacing:0.12em; color:rgba(17,18,21,0.6);">OFFICIAL FORENSIC CERTIFICATE</div>
+        <div class="receipt-title">EXPORTGUARD AUDIT</div>
+        <div class="mono" style="font-size:11px; margin-top:4px;" id="receipt-timestamp">UTC: 2026-10-29T12:00:00</div>
+      </div>
+
+      <div class="receipt-item-row">
+        <span>ARCHIVE:</span>
+        <strong id="receipt-filename">high_compression_export.gz</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>STREAM ROWS:</span>
+        <strong id="receipt-rows">130,001</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMPRESSED SIZE:</span>
+        <strong id="receipt-size">0.37 MB</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>EFFICIENCY:</span>
+        <strong id="receipt-bpr">3.01 B/row</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>GZIP CONTAINER:</span>
+        <strong id="receipt-crc">0x8bda991e (RFC 1952 OK)</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>STREAM SENTINEL:</span>
+        <strong id="receipt-sentinel" style="color:var(--signal-safe);">VERIFIED INTACT</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMMUTATIVE XOR:</span>
+        <strong id="receipt-xor">0x41e6515751dfd694</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>SHANNON ENTROPY:</span>
+        <strong id="receipt-entropy">5.2169 bits/byte</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMPLIANCE:</span>
+        <strong>NIST SP 800-53 CP-9(2)</strong>
+      </div>
+
+      <div class="receipt-stamp-box" id="receipt-verdict-stamp">
+        INTACT // CERTIFIED FOR RESTORE
+      </div>
+
+      <div style="text-align:center; margin-top:16px;">
+        <a href="/receipt?scenario=high_compression" class="btn-receipt-full mono" style="display:inline-block; font-size:11px; text-decoration:underline;">
+          OPEN FULL PRINTABLE CERTIFICATE ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       9. Footer
+       ========================================================================= -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div class="footer-brand display">ExportGuard</div>
+      <p class="footer-copy">
+        Zero-Footprint Forensic Integrity Verification for Compressed Database Archives.<br>
+        Built for Strict Tablespace & Zero-Downtime Maintenance Constraints.
+      </p>
+      <div class="mono" style="font-size:11px; color:rgba(17,18,21,0.5); margin-top:8px;">
+        COMPLIANT WITH ISO/IEC 27001 CONTROL 8.13 AND NIST SP 800-53 REV. 5 (CP-9)
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/gsap-animations.js"></script>
+  <script src="/static/js/landing.js"></script>
+</body>
+</html>

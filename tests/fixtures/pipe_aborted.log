@@ -1,0 +1,6 @@
+Export: Release 19.0.0.0.0 - Production on Wed Oct 29 14:10:00 2026
+Connected to: Oracle Database 19c Enterprise Edition Release 19.3.0.0.0
+Starting "SYSTEM"."SYS_EXPORT_SCHEMA_01": schemas=FINANCE
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+. . exported "FINANCE"."TRANSACTIONS"                    29.1 MB   70000 rows
+Killed by signal 9 (SIGKILL)

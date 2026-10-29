@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExportGuard — Forensic Audit Cockpit & Live Simulation Deck</title>
+  
+  <!-- Curated Google Typography: Anton, Inter Tight, Instrument Serif, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="workbench-body">
+
+  <!-- =========================================================================
+       1. Workbench Top Masthead Header
+       ========================================================================= -->
+  <header class="app-header">
+    <div class="brand-pill">
+      <span class="brand-name display">ExportGuard</span>
+      <span class="brand-tag mono">FORENSIC COCKPIT v2.0</span>
+    </div>
+
+    <!-- Live Telemetry Status Pills -->
+    <div class="header-telemetry mono">
+      <span class="telemetry-pill">
+        <span class="status-pulse-dot"></span>
+        STREAM ENGINE ACTIVE
+      </span>
+      <span class="telemetry-pill">0 BYTES TEMP SPILLED</span>
+      <span class="telemetry-pill">NIST CP-9(2)</span>
+    </div>
+
+    <div class="header-right-actions">
+      <!-- Link to Editorial Showcase -->
+      <a href="/landing" class="nav-overview-btn mono">
+        [ 00 / OVERVIEW & STORY → ]
+      </a>
+
+      <!-- Hanging Pull-Ticket Receipt Button -->
+      <div class="pull-ticket-anchor">
+        <div class="pull-ticket-cord"></div>
+        <button id="pull-ticket-btn" class="pull-ticket-btn" aria-label="Open Audit Receipt">
+          <div class="pull-ticket-eyelet"></div>
+          <span class="pull-ticket-text">AUDIT<br>TICKET</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. Cockpit Command Strip & Scenario Switchboard
+       ========================================================================= -->
+  <section class="workbench-command-strip">
+    <div class="command-strip-inner">
+      <div class="command-meta-row mono">
+        <span>(01) OPERATIONAL FORENSIC DECK // ZERO STAGING IMPORT</span>
+        <span>SELECT SIMULATION TARGET TO AUDIT IN REAL TIME:</span>
+      </div>
+
+      <!-- Tactile Scenario Buttons -->
+      <div class="scenario-buttons-grid" role="tablist" aria-label="Scenario Selector">
+        <button class="btn-scenario active" data-scenario="high_compression" role="tab" aria-selected="true">
+          <span class="scenario-dot"></span>
+          The Paradox (+30% Rows, -20% Size)
+        </button>
+        <button class="btn-scenario hazard-btn" data-scenario="pipe_truncated" role="tab" aria-selected="false">
+          <span class="scenario-dot"></span>
+          ⚠️ Pipe-Truncated (Silent Kill)
+        </button>
+        <button class="btn-scenario" data-scenario="valid" role="tab" aria-selected="false">
+          <span class="scenario-dot"></span>
+          Valid Baseline Export (100k Rows)
+        </button>
+        <button class="btn-scenario" data-scenario="raw_truncated" role="tab" aria-selected="false">
+          <span class="scenario-dot"></span>
+          Raw Truncated Container
+        </button>
+        <button class="btn-scenario" data-scenario="corrupted" role="tab" aria-selected="false">
+          <span class="scenario-dot"></span>
+          Bit-Rot / CRC Error
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. Stamped Forensic Verdict Certificate Banner
+       ========================================================================= -->
+  <section id="verdict-zone" class="verdict-certificate" aria-live="polite">
+    <div id="verdict-banner" class="certificate-card cert-intact">
+      <div class="certificate-top-row">
+        <div class="cert-stamp-badge display" id="verdict-status-title">INTACT</div>
+        <div class="cert-meta-group mono">
+          <div class="cert-id" id="verdict-job-id">AUDIT-ID: 46DE6576 // FILE: high_compression_export.gz</div>
+          <div class="cert-spec">ENGINE: ZERO-FOOTPRINT FORENSICS V2.0</div>
+        </div>
+      </div>
+
+      <div class="cert-body">
+        <h2 class="cert-verdict-title display" id="verdict-summary">
+          Fully Intact & Validated (Verified Repetitive Data Compression)
+        </h2>
+        <p class="cert-verdict-desc" id="verdict-explanation">
+          Management concerns resolved. All data rows (130,001 rows) and schema columns are intact. The 20% size reduction despite +30% row volume is fully explained by low Shannon entropy (5.2121 bits/byte), where LZ77 back-references achieved high compression across repetitive row patterns.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. Four Kinetic Metric Bricks (Real-time Telemetry)
+       ========================================================================= -->
+  <section class="metrics-shelf" aria-label="Key Forensic Metrics">
+    <div class="metrics-grid">
+      <!-- Metric 1: Rows -->
+      <article class="metric-brick">
+        <header class="brick-header mono">
+          <span>VERIFIED DATA ROWS</span>
+          <span class="brick-badge badge-emerald" id="metric-rows-delta">+30%</span>
+        </header>
+        <div class="brick-val-row">
+          <span class="brick-number display animate-number" id="metric-rows" data-value="130001">130,001</span>
+        </div>
+        <footer class="brick-footer mono">Stream-counted without writing uncompressed output to disk.</footer>
+      </article>
+
+      <!-- Metric 2: Size -->
+      <article class="metric-brick">
+        <header class="brick-header mono">
+          <span>PHYSICAL ARCHIVE SIZE</span>
+          <span class="brick-badge badge-cobalt" id="metric-size-delta">-80.5%</span>
+        </header>
+        <div class="brick-val-row">
+          <span class="brick-number display animate-number" id="metric-size" data-value="0.37">0.37</span>
+          <span class="brick-unit display">MB</span>
+        </div>
+        <footer class="brick-footer mono">Compressed byte payload stored on storage disk.</footer>
+      </article>
+
+      <!-- Metric 3: Efficiency -->
+      <article class="metric-brick">
+        <header class="brick-header mono">
+          <span>COMPRESSION EFFICIENCY</span>
+          <span class="brick-badge badge-emerald" id="metric-bpr-badge">HIGH LZ77</span>
+        </header>
+        <div class="brick-val-row">
+          <span class="brick-number display animate-number" id="metric-bpr" data-value="3.01">3.01</span>
+          <span class="brick-unit display">B/row</span>
+        </div>
+        <footer class="brick-footer mono">Efficiency gain over previous 20.04 B/row baseline.</footer>
+      </article>
+
+      <!-- Metric 4: Score -->
+      <article class="metric-brick">
+        <header class="brick-header mono">
+          <span>ANOMALY RISK SCORE</span>
+          <span class="brick-badge badge-emerald" id="metric-score-badge">SAFE</span>
+        </header>
+        <div class="brick-val-row">
+          <span class="brick-number display animate-number" id="metric-score" data-value="83">83</span>
+          <span class="brick-unit display">/ 100</span>
+        </div>
+        <footer class="brick-footer mono">Deviation from theoretical sub-linear scaling curves.</footer>
+      </article>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. Three-Tier Zero-Footprint Verification Pipeline
+       ========================================================================= -->
+  <section id="pipeline" class="pipeline-section">
+    <div class="section-badge-row mono">
+      <span>(02) THREE-TIER ZERO-FOOTPRINT VERIFICATION PIPELINE</span>
+      <span>EXPAND DRILL-DOWN TELEMETRY</span>
+    </div>
+
+    <div class="pipeline-tiers-grid">
+      <!-- Tier 1 -->
+      <div class="tier-brick" id="tier-brick-1">
+        <div class="tier-brick-head">
+          <h3 class="tier-title display">Tier 1: Container & Envelope</h3>
+          <span class="tier-status-stamp pass" id="tier1-pill">PASS</span>
+        </div>
+        <div class="tier-brick-body mono">
+          <div class="tier-item-row">
+            <span>Completion Sentinel:</span>
+            <strong id="t1-sentinel" class="text-safe">Verified Intact</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>RFC 1952 Container:</span>
+            <strong id="t1-gzip">RFC 1952 OK (0x8bda991e)</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>4GB ISIZE Rollover:</span>
+            <strong id="t1-isize">Normal (&lt; 4GB)</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>Export Utility Log:</span>
+            <strong id="t1-log">Job Clean (0 Errors)</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="tier-brick" id="tier-brick-2">
+        <div class="tier-brick-head">
+          <h3 class="tier-title display">Tier 2: Stream Sampling</h3>
+          <span class="tier-status-stamp pass" id="tier2-pill">PASS</span>
+        </div>
+        <div class="tier-brick-body mono">
+          <div class="tier-item-row">
+            <span>Streaming Row Count:</span>
+            <strong id="t2-rows">130,001 rows</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>Schema Fingerprint:</span>
+            <strong id="t2-schema">dc9ec9cbc12c0a...</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>Boundary Columns:</span>
+            <strong id="t2-boundary">Complete Fields</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>Commutative XOR Checksum:</span>
+            <strong id="t2-xor">0x41e6515751dfd694</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier-brick" id="tier-brick-3">
+        <div class="tier-brick-head">
+          <h3 class="tier-title display">Tier 3: Deep Forensics</h3>
+          <span class="tier-status-stamp pass" id="tier3-pill">PASS</span>
+        </div>
+        <div class="tier-brick-body mono">
+          <div class="tier-item-row">
+            <span>Shannon Entropy (Avg):</span>
+            <strong id="t3-entropy">5.2169 b/byte</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>Sliding Window Anomalies:</span>
+            <strong id="t3-anomalies">0 flagged</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>64KB Block Merkle Root:</span>
+            <strong id="t3-merkle">770e6e3bc20a61...</strong>
+          </div>
+          <div class="tier-item-row">
+            <span>Bit-Rot / Zeroed Blocks:</span>
+            <strong id="t3-bitrot" class="text-safe">None Detected</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. Forensic Split Panes: Entropy Chart + Stream Terminal
+       ========================================================================= -->
+  <section id="forensics" class="forensics-split-section">
+    <!-- Entropy Visualizer -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <h3 class="panel-title display">Sliding-Window Shannon Entropy Profile</h3>
+        <span class="mono" style="font-size:11px;">4KB WINDOW // 512B STEP</span>
+      </div>
+      <p class="panel-desc mono">
+        4KB sliding window evaluation across uncompressed byte offsets. Flags localized bit-rot zeroed holes (&le; 1.0b) or foreign noise (&ge; 7.95b).
+      </p>
+      
+      <!-- SVG Target -->
+      <div id="entropy-chart-target" class="entropy-chart-frame"></div>
+      
+      <div class="chart-legend-row mono">
+        <span><span class="legend-color-dot" style="background:var(--accent-blue);"></span> Entropy Curve</span>
+        <span><span class="legend-color-dot" style="background:rgba(15,169,88,0.25);"></span> Structured Text Band (4.0 - 6.0b)</span>
+        <span><span class="legend-color-dot" style="background:var(--signal-warn);"></span> Zeroed Bit-Rot Alert (&le; 1.0b)</span>
+      </div>
+    </div>
+
+    <!-- Terminal Box -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <h3 class="panel-title display">Stream Boundary & Sentinel Verification</h3>
+        <span class="mono" style="font-size:11px;">RESERVOIR SAMPLE BUFFER</span>
+      </div>
+      <p class="panel-desc mono">
+        Verifies header schema declaration against trailing EOF sentinels without writing uncompressed output to disk.
+      </p>
+      
+      <pre id="boundary-preview" class="terminal-view mono">=== [START OF STREAM: HEADER & FIRST 3 RECORDS] ===
+TX-00000000,ACC-CORP-PRIMARY-001,100.0,USD,BATCH_AUTOMATED_RECONCILED,Standard batch sweep routine for corporate liquidity account pool - automated reconciliation rule 4B
+TX-00000001,ACC-CORP-PRIMARY-001,100.0,USD,BATCH_AUTOMATED_RECONCILED,Standard batch sweep routine for corporate liquidity account pool - automated reconciliation rule 4B
+TX-00000002,ACC-CORP-PRIMARY-001,100.0,USD,BATCH_AUTOMATED_RECONCILED,Standard batch sweep routine for corporate liquidity account pool - automated reconciliation rule 4B
+
+... [129,995 INTERMEDIATE ROWS STREAM-VERIFIED] ...
+
+=== [END OF STREAM: LAST 3 RECORDS & SENTINEL] ===
+TX-00129998,ACC-CORP-PRIMARY-001,100.0,USD,BATCH_AUTOMATED_RECONCILED,Standard batch sweep routine for corporate liquidity account pool - automated reconciliation rule 4B
+TX-00129999,ACC-CORP-PRIMARY-001,100.0,USD,BATCH_AUTOMATED_RECONCILED,Standard batch sweep routine for corporate liquidity account pool - automated reconciliation rule 4B
+TX-00130000,ACC-CORP-PRIMARY-001,100.0,USD,BATCH_AUTOMATED_RECONCILED,Standard batch sweep routine for corporate liquidity account pool - automated reconciliation rule 4B
+-- EXPORT_COMPLETE_SENTINEL_OK_130001_ROWS --</pre>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. High-Density Tables: Column Profile + NIST Confidence Matrix
+       ========================================================================= -->
+  <section id="tables" class="forensics-split-section">
+    <!-- Column Profile -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <h3 class="panel-title display">Column-Level Structural Profiling</h3>
+        <span class="mono" style="font-size:11px;">SCHEMA HOMOGENEITY</span>
+      </div>
+      <p class="panel-desc mono">
+        Validates column integrity and detects null-flooding or column-pruning across schema fields.
+      </p>
+      
+      <div class="table-responsive">
+        <table id="col-profile-table" class="brutalist-table">
+          <thead>
+            <tr>
+              <th>Column Name</th>
+              <th>Null %</th>
+              <th>Avg Length</th>
+              <th>Distinct</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>transaction_id</td>
+              <td>0%</td>
+              <td>11 ch</td>
+              <td>200</td>
+              <td><strong class="text-safe">HEALTHY</strong></td>
+            </tr>
+            <tr>
+              <td>account_id</td>
+              <td>0%</td>
+              <td>20 ch</td>
+              <td>1</td>
+              <td><strong class="text-safe">HEALTHY</strong></td>
+            </tr>
+            <tr>
+              <td>amount</td>
+              <td>0%</td>
+              <td>5 ch</td>
+              <td>1</td>
+              <td><strong class="text-safe">HEALTHY</strong></td>
+            </tr>
+            <tr>
+              <td>currency</td>
+              <td>0%</td>
+              <td>3 ch</td>
+              <td>1</td>
+              <td><strong class="text-safe">HEALTHY</strong></td>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td>0%</td>
+              <td>26 ch</td>
+              <td>1</td>
+              <td><strong class="text-safe">HEALTHY</strong></td>
+            </tr>
+            <tr>
+              <td>payload_note</td>
+              <td>0%</td>
+              <td>100 ch</td>
+              <td>1</td>
+              <td><strong class="text-safe">HEALTHY</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NIST Confidence Matrix -->
+    <div class="panel-box">
+      <div class="panel-head">
+        <h3 class="panel-title display">Statistical Confidence Matrix (NIST SP 800-53 CP-9)</h3>
+        <span class="mono" style="font-size:11px;">HYPERGEOMETRIC SAMPLING</span>
+      </div>
+      <p class="panel-desc mono">
+        Mathematical confidence bounds derived from hypergeometric and Rule of Three finite population sampling models.
+      </p>
+      
+      <div class="table-responsive">
+        <table id="confidence-table" class="brutalist-table">
+          <thead>
+            <tr>
+              <th>Hypothetical Corruption Level</th>
+              <th>Defect Rate</th>
+              <th>Rows Affected</th>
+              <th>Detection Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10% widespread corruption</td>
+              <td>10%</td>
+              <td>13,000</td>
+              <td><strong class="text-safe">100%</strong></td>
+            </tr>
+            <tr>
+              <td>5% substantial corruption</td>
+              <td>5%</td>
+              <td>6,500</td>
+              <td><strong class="text-safe">100%</strong></td>
+            </tr>
+            <tr>
+              <td>1% moderate corruption</td>
+              <td>1%</td>
+              <td>1,300</td>
+              <td><strong class="text-safe">100%</strong></td>
+            </tr>
+            <tr>
+              <td>0.1% localized corruption</td>
+              <td>0.1%</td>
+              <td>130</td>
+              <td><strong class="text-safe">92.5823%</strong></td>
+            </tr>
+            <tr>
+              <td>0.01% isolated corruption</td>
+              <td>0.01%</td>
+              <td>13</td>
+              <td><strong style="color:var(--signal-warn);">22.8958%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. Custom File Ingestion Station (Brutalist Drag-and-Drop Picker)
+       ========================================================================= -->
+  <section class="upload-shelf-card">
+    <div class="upload-inner-box">
+      <div>
+        <h3 class="display" style="font-size:24px; margin-bottom:4px;">AUDIT CUSTOM DATABASE DUMP</h3>
+        <p class="mono" style="font-size:12px; color:rgba(17,18,21,0.7);">
+          Upload a live .gz compressed export and optional log file for zero-footprint validation.
+        </p>
+      </div>
+
+      <form id="upload-form" class="upload-group-row">
+        <!-- Custom Target Export File Picker -->
+        <div class="upload-input-unit">
+          <label class="upload-field-label mono" for="file-export">TARGET EXPORT (.GZ)</label>
+          <div class="brutalist-file-picker" id="picker-export">
+            <input type="file" id="file-export" name="export_file" accept=".gz" required class="visually-hidden-file-input">
+            <button type="button" class="btn-brutalist-browse mono" id="btn-browse-export">
+              <span>SELECT .GZ ARCHIVE</span>
+            </button>
+            <span class="file-name-display mono" id="file-export-name">NO FILE CHOSEN</span>
+          </div>
+        </div>
+
+        <!-- Custom Optional Log File Picker -->
+        <div class="upload-input-unit">
+          <label class="upload-field-label mono" for="file-log">OPTIONAL LOG (.LOG / .TXT)</label>
+          <div class="brutalist-file-picker" id="picker-log">
+            <input type="file" id="file-log" name="log_file" accept=".log,.txt" class="visually-hidden-file-input">
+            <button type="button" class="btn-brutalist-browse mono" id="btn-browse-log">
+              <span>SELECT LOG FILE</span>
+            </button>
+            <span class="file-name-display mono" id="file-log-name">NO FILE CHOSEN</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-audit-submit display">
+          EXECUTE AUDIT →
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. Perforated Receipt Modal Drawer
+       ========================================================================= -->
+  <div id="receipt-modal" class="receipt-modal-backdrop" role="dialog" aria-modal="true" aria-label="Official Audit Receipt">
+    <div class="receipt-paper">
+      <button id="btn-close-receipt" class="receipt-close-btn" aria-label="Close Receipt">✕</button>
+      
+      <div class="receipt-header">
+        <div class="mono" style="font-size:11px; letter-spacing:0.12em; color:rgba(17,18,21,0.6);">OFFICIAL FORENSIC CERTIFICATE</div>
+        <div class="receipt-title">EXPORTGUARD AUDIT</div>
+        <div class="mono" style="font-size:11px; margin-top:4px;" id="receipt-timestamp">UTC: 2026-10-29T12:00:00</div>
+      </div>
+
+      <div class="receipt-item-row">
+        <span>ARCHIVE:</span>
+        <strong id="receipt-filename">export.gz</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>STREAM ROWS:</span>
+        <strong id="receipt-rows">130,001</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMPRESSED SIZE:</span>
+        <strong id="receipt-size">0.37 MB</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>EFFICIENCY:</span>
+        <strong id="receipt-bpr">3.01 B/row</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>GZIP CONTAINER:</span>
+        <strong id="receipt-crc">0x8bda991e (RFC 1952 OK)</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>STREAM SENTINEL:</span>
+        <strong id="receipt-sentinel" style="color:var(--signal-safe);">VERIFIED INTACT</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMMUTATIVE XOR:</span>
+        <strong id="receipt-xor">0x41e6515751dfd694</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>SHANNON ENTROPY:</span>
+        <strong id="receipt-entropy">5.2169 bits/byte</strong>
+      </div>
+      <div class="receipt-item-row">
+        <span>COMPLIANCE:</span>
+        <strong>NIST SP 800-53 CP-9(2)</strong>
+      </div>
+
+      <div class="receipt-stamp-box" id="receipt-verdict-stamp">
+        INTACT // CERTIFIED FOR RESTORE
+      </div>
+
+      <div style="text-align:center; margin-top:20px;">
+        <a id="receipt-view-full-link" href="/receipt?scenario=high_compression" class="mono" style="font-size:11px; color:var(--accent-blue); text-decoration:underline;">
+          OPEN FULL PRINTABLE CERTIFICATE ↗
+        </a>
+      </div>
+
+      <p class="mono" style="font-size:10px; color:rgba(17,18,21,0.6); text-align:center; margin-top:14px;">
+        Zero tablespace allocated. Zero staging database created.<br>Generated automatically by ExportGuard Engine v2.0
+      </p>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       10. Footer
+       ========================================================================= -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div class="footer-brand display">ExportGuard</div>
+      <p class="footer-copy">
+        Zero-Footprint Forensic Integrity Verification for Compressed Database Archives.<br>
+        Built for Strict Tablespace & Zero-Downtime Maintenance Constraints.
+      </p>
+      <div class="mono" style="font-size:11px; color:rgba(17,18,21,0.5); margin-top:8px;">
+        COMPLIANT WITH ISO/IEC 27001 CONTROL 8.13 AND NIST SP 800-53 REV. 5 (CP-9)
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/gsap-animations.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

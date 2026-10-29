@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Pytest / Coverage caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Tooling caches
+.taste-skill/
+.system_generated/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Exclude temporary logs, but keep test fixture logs
+*.log
+!tests/fixtures/*.log
+
+# Visual test snapshots
+screenshots/
