@@ -1,0 +1,8 @@
+Export: Release 19.0.0.0.0 - Production on Thu Oct 29 18:30:00 2026
+Connected to: Oracle Database 19c Enterprise Edition Release 19.3.0.0.0
+Starting "SYSTEM"."SYS_EXPORT_REPETITIVE_01": schemas=TREASURY
+. . exported "TREASURY"."LIQUIDITY_SWEEP_TX"           12.4 MB  130000 rows in 2 seconds
+Master table "SYSTEM"."SYS_EXPORT_REPETITIVE_01" successfully loaded/unloaded
+Dump file set for SYSTEM.SYS_EXPORT_REPETITIVE_01 is:
+  /u01/app/oracle/dpdump/export_liquidity.dmp
+Job "SYSTEM"."SYS_EXPORT_REPETITIVE_01" successfully completed at Thu Oct 29 18:30:04 2026

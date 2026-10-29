@@ -1,0 +1,8 @@
+Export: Release 19.0.0.0.0 - Production on Thu Oct 29 19:15:00 2026
+Connected to: Oracle Database 19c Enterprise Edition Release 19.3.0.0.0
+Starting "SYSTEM"."SYS_EXPORT_LEDGER": schemas=FINANCE
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+. . exporting table "FINANCE"."GENERAL_LEDGER"
+ORA-31693: Table data object "FINANCE"."GENERAL_LEDGER" failed to load/unload
+ORA-01555: snapshot too old: rollback segment number 14 with name "_SYSSMU14$" too small
+Job "SYSTEM"."SYS_EXPORT_LEDGER" completed with 2 error(s) at Thu Oct 29 19:15:42 2026

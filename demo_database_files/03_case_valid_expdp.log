@@ -1,0 +1,8 @@
+Export: Release 19.0.0.0.0 - Production on Thu Oct 29 18:00:00 2026
+Connected to: Oracle Database 19c Enterprise Edition Release 19.3.0.0.0
+Starting "SYSTEM"."SYS_EXPORT_BASELINE": schemas=FINANCE
+. . exported "FINANCE"."TRANSACTIONS"                    42.5 MB  100000 rows in 4 seconds
+Master table "SYSTEM"."SYS_EXPORT_BASELINE" successfully loaded/unloaded
+Dump file set for SYSTEM.SYS_EXPORT_BASELINE is:
+  /u01/app/oracle/dpdump/export_baseline.dmp
+Job "SYSTEM"."SYS_EXPORT_BASELINE" successfully completed at Thu Oct 29 18:00:06 2026

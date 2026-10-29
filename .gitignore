@@ -22,9 +22,10 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Exclude temporary logs, but keep test fixture logs
+# Exclude temporary logs, but keep test fixture and demo logs
 *.log
 !tests/fixtures/*.log
+!demo_database_files/*.log
 
 # Visual test snapshots
 screenshots/
